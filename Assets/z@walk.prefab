@@ -1307,6 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17495c84b62423647ac04a5d6fd5a66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zonbi: {fileID: 0}
   enemyHP: 10
 --- !u!137 &13700366
 SkinnedMeshRenderer:
@@ -2076,6 +2077,10 @@ Prefab:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7fced3ce72266b241b478ae7bacd8d58, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178304}

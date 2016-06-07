@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     void Update()
     {
         //（重要）マウスカーソルを非表示
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         //右クリック
         if (Input.GetButtonDown("Fire1"))

@@ -2,11 +2,15 @@
 using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
+    Animator anima;
+
+    public GameObject zonbi;
     public int enemyHP;
 
 	// Use this for initialization
 	void Start () {
-	
+        anima = zonbi.GetComponent<Animator>();
+        
 	}
 	
 	// Update is called once per frame
@@ -19,7 +23,8 @@ public class EnemyAI : MonoBehaviour {
         enemyHP--;
         if (enemyHP <= 0)
         {
-            Destroy(gameObject);
+            anima.SetBool("fall", true);
+            //Destroy(gameObject);
         }
     }
 }
