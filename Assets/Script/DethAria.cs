@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DethAria : MonoBehaviour
 {
-    public GameObject player;
+    //public GameObject player;
     // Use this for initialization
     void Start()
     {
@@ -16,9 +16,11 @@ public class DethAria : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider col)
     {
-        Destroy(player);
-        Debug.Log("aaa");
+        if (col.tag == "Player")
+        {
+            Destroy(col.gameObject);
+        }
     }
 }
