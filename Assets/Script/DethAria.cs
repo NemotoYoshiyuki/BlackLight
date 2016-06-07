@@ -18,7 +18,7 @@ public class DethAria : MonoBehaviour
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Player")
+        if (col.tag == "Player" || col.tag == "psyllium")
         {
             Destroy(col.gameObject);
         }

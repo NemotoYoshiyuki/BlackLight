@@ -14,6 +14,9 @@ public class Gun : MonoBehaviour
     // Update is called once per frame(毎フレーム呼ばれる)
     void Update()
     {
+        //（重要）マウスカーソルを非表示
+        Cursor.visible = false;
+
         //右クリック
         if (Input.GetButtonDown("Fire1"))
         {
@@ -32,6 +35,9 @@ public class Gun : MonoBehaviour
         obj.transform.position = spawn.position;
         Vector3 force = this.gameObject.transform.forward * speed;
         obj.GetComponent<Rigidbody>().AddForce(force);
+
+        //三秒後に消す
+        Destroy(obj, 3f);
     }
 
     void Shoot2()
@@ -43,7 +49,9 @@ public class Gun : MonoBehaviour
         // 手榴弾の『高さ方向の速度』を加算
         bom_speed += Vector3.up * 5;
         // 手榴弾の速度を代入
-        bullet2obj.GetComponent<Rigidbody>().velocity = bom_speed;   
-        
+        bullet2obj.GetComponent<Rigidbody>().velocity = bom_speed;
+
+        //30秒後に消す
+        Destroy(bullet2obj, 30f);
     }
 }
