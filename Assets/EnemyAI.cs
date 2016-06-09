@@ -30,8 +30,12 @@ public class EnemyAI : MonoBehaviour {
             Vector3 playerPOS = player.position;
             Vector3 direction = playerPOS - transform.position;
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
-        
+        }       
+    }
+
+    public void Attack()
+    {
+        animator.SetBool("attack", true);
     }
 
     void OnTriggerEnter(Collider other)
