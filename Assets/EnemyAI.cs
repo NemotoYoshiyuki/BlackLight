@@ -2,29 +2,46 @@
 using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
-    Animator anima;
+    Animator animator;
 
     public GameObject zonbi;
     public int enemyHP;
+    private bool isDeth;
+    public float speed;
+
+    public Transform player;
+    
 
 	// Use this for initialization
 	void Start () {
-        anima = zonbi.GetComponent<Animator>();
-        
+        animator = zonbi.GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        Move();
+    }
+
+    public void Move()
+    {
+        if (isDeth == false)
+        {
+            Vector3 playerPOS = player.position;
+            Vector3 direction = playerPOS - transform.position;
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
+        
+    }
 
     void OnTriggerEnter(Collider other)
     {
         enemyHP--;
         if (enemyHP <= 0)
         {
-            anima.SetBool("fall", true);
-            //Destroy(gameObject);
+            animator.SetBool("fall", true);         
+            isDeth = true;
+            Destroy(gameObject, 2f);
         }
     }
 }
