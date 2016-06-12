@@ -6,30 +6,50 @@ public class EnemyAI : MonoBehaviour {
 
     public GameObject zonbi;
     public int enemyHP;
-    private bool isDeth;
+    bool isDeth;
     public float speed;
 
     public Transform player;
+    private NavMeshAgent nav;
     
 
 	// Use this for initialization
 	void Start () {
         animator = zonbi.GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
+        nav = GetComponent<NavMeshAgent>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Move();
+
+        //プレイヤーの距離を所得
+        float dis = Vector3.Distance(player.position, transform.position);
+        Debug.Log(dis);
+
+        if (dis <= 5f)
+        {
+            nav.enabled = true;
+            Move();           
+            //2mに近づいたら攻撃
+            if (dis <= 2f)
+            {
+                Attack();
+                nav.enabled = false;
+            }
+        }
+        else
+        {
+            nav.enabled = false;
+        }
     }
 
     public void Move()
     {
         if (isDeth == false)
         {
-            Vector3 playerPOS = player.position;
-            Vector3 direction = playerPOS - transform.position;
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            nav.SetDestination(player.position);
+            animator.SetBool("walk", true);
         }       
     }
 
